@@ -1,0 +1,14 @@
+<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>ログイン</h1>
+<% if @current_user %>
+  <p><%= @current_user.user_name %></p>
+<% end %>
+<%= form_for(:session, url: login_path) do |f| %>
+  <%= f.label :UserName %>
+  <%= f.email_field :user_name %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit "Log in" %>
+<% end %>
+<h1>ログアウト</h1>
+<%= link_to "ログアウト", logout_path, method: :delete %>
