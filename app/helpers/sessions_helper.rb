@@ -14,4 +14,9 @@ module SessionsHelper
     end
   end
 
+  def auth_user
+    if @current_student == nil
+      redirect_to '/sessions/new'
+    end
+  end
 end
