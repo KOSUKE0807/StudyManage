@@ -1,0 +1,28 @@
+<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>ログイン</h1>
+<button type="button" class="btn btn-primary">Primary</button>
+
+<div class="input_div first_input_div">
+  <i class="fas fa-user"></i>  
+  <div>
+    <h5 class="font-italic">Email</h5>
+  </div>
+</div>
+<div class="input_div second_input_div">
+  <i class="fas fa-lock"></i>  
+  <div>
+    <h5 class="font-italic">Password</h5>
+  </div>
+</div>
+
+<% if @current_user %>
+  <p><%= @current_user.user_name %></p>
+<% end %>
+<%= form_for(:session, url: login_path) do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit "Log in" %>
+<% end %>
+<i class="fas fa-lock"></i>  
