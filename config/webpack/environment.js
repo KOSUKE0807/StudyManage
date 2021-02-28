@@ -1,3 +1,4 @@
+console.log("environment")
 const { environment } = require('@rails/webpacker')
 
 // ここから
@@ -8,8 +9,9 @@ environment.plugins.prepend(
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
-    Popper: 'popper.js'
+    Popper: ['popper.js', 'default']
   })
 )
 // ここまで
+
 module.exports = environment
