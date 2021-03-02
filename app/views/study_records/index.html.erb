@@ -2,27 +2,9 @@
   <div style="text-align: center; padding: 15px;">
     <button type="button" class="btn btn-secondary">学習を始める</button>
   </div>
-  <div>
-    <div class="balloon" style="margin-top: 0px; margin-bottom: 8px;">
-      <div class="stu_card_content">
-        <div class="stu_card_content_subject">
-          <p class="stu_card_content_subject_circle">英</p>
-        </div>
-        <div class="stu_card_content_text">
-          <span class= "stu_card_content_text_subject" style="font-size: 12px;">教材: </span>
-          <span style="font-size: 12px;">青チャート</span>
-        </div>
-      </div>
-      <div class="stu_card_comment">
-        <p style="font-size: 12px;margin-bottom: 5px;">今日は複素数平面と行列の演習をしました。集中して取り組めました。</p>
-      </div>
-      <div class="stu_card_content_time">
-        <div style="background-color: #0066FF;margin: 0 25%;border-radius: 15px;">
-          <p style="font-size: 13px;padding: 5px 0px;margin: 0 20%;color: white;">学習時間<br>02:30</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  
+  <%= render 'study_records/record_card' %>
+
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       <li class="page-item disabled">
