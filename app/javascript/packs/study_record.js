@@ -1,19 +1,6 @@
-
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') {
-    console.log("コンテンツが表示された");
-  }
-
-  if (document.visibilityState === 'hidden') {
-    console.log("コンテンツがバックグラウンドになった");
-  }
-})
-window.addEventListener("load", () => {
-  console.log("ページが読み込まれた");
-});
-
-
-window.addEventListener("turbolinks:load", () => {
+document.addEventListener("turbolinks:load", function () {
+  var timer = document.getElementById('timer');
+  var submitTime = document.getElementById('submit-time');
 
   var StartTime = 0;
   var PauseTime = 0;
@@ -28,7 +15,8 @@ window.addEventListener("turbolinks:load", () => {
       m = ('0' + m).slice(-2);
       s = ('0' + s).slice(-2);
 
-      console.log( h + ':' + m + ':' + s);
+      timer.textContent = h + ':' + m + ':' + s;
+      submitTime.value = h + ':' + m + ':' + s;
     }
     return {
       CountUp: function () {
@@ -41,7 +29,6 @@ window.addEventListener("turbolinks:load", () => {
       CountStop: function () {
         clearTimeout(timeoutId);
         PauseTime += Date.now() - StartTime; 
-        console.log(PauseTime);
       },
       CountReset: function () {
         ElapsedTime = 0;
@@ -56,6 +43,9 @@ window.addEventListener("turbolinks:load", () => {
     Stopwatch.CountUp()
   });
   $('#pausebtn').click(function() {
+    Stopwatch.CountStop()
+  });
+  $('.complete').click(function() {
     Stopwatch.CountStop()
   });
   $('#resetbtn').click(function() {
