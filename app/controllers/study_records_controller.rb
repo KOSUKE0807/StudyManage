@@ -4,6 +4,9 @@ class StudyRecordsController < ApplicationController
   def show
   end
 
+  def new
+  end
+
   def index
     records = StudyRecord.where(student_id: @current_user.id)
     records = records.page(params[:page]).per(5)

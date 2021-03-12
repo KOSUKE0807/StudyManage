@@ -1,0 +1,48 @@
+<%= javascript_pack_tag 'button_display' %>
+<%= javascript_pack_tag 'study_record' %>
+
+<div class="container-lg">
+  <div class="new_learning_history_container">
+    <div class="stopwatch_container" id="StopwatchByButton">
+      <h4 class="stopwatch_title">StopWatch</h4>
+      <h6 id="timerLabel">
+        <div class="timer" id="timer">
+          00:00:00
+        </div>
+      </h6>
+    </div>
+    <div class="information_container">
+      <div class="text_container">
+        <label for="exampleFormControlTextarea1">学習教材</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <div class="comment_contaner">
+        <label for="exampleFormControlTextarea1">コメント</label>
+        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+      </div>
+    </div>
+    <div id="new_history_buttons">
+      <div class="each_history_buttons" id="before_start">
+        <input type="button" class="myButton start startbtn" id="startbtn" value="スタート" >
+      </div>
+      <div id="while_studying">
+        <input type="button" class="myButtons pause" id="pausebtn" value="一時停止">
+        <input type="button" class="myButtons finish complete" value="完了">
+      </div>
+      <div id="pause">
+        <input type="button" class="myButtonss restart startbtn" id="restartbtn" value="再開">
+        <input type="button" class="myButtonss reset" id="resetbtn" value="リセット">
+        <input type="button" class="myButtonss finish complete" id="complete" value="完了">
+      </div>
+      <div id ="finish">
+        <input type="button" class="myButtons share" id="sharebtn" value="上記の内容でシェア">
+        <input type="button" class="myButtons share" id="stillbtn" value="まだ学習を続ける">
+      </div>
+      <div id="hand-timer-button" style="text-align: center; margin-top:20px;">
+        <input type="button" value="手動で入力はこちら" style="font-size: 12px; background-color: white;color: midnightblue; border-radius: 6px;" onclick="HandTimer()"></input>
+      </div>
+    </div>
+  <div id="attention-message" style="font-size: 13px;">ストップウォッチ起動中はページ遷移しないで下さい。<br>遷移したい場合は<span style="color: red;">リセット</span>するか学習を<span style="color: red;">完了</span>させてください。</div>
+</div>
+
+</div>
