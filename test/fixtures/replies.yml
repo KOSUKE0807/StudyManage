@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyText
+  student_or_teacher: MyString
+  student: one
+  teacher: one
+  question: one
+
+two:
+  message: MyText
+  student_or_teacher: MyString
+  student: two
+  teacher: two
+  question: two
