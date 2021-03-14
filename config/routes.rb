@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :sessions
   resources :home
   resources :study_records
+  resources :questions
+  resources :replies
 end
