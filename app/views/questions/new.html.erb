@@ -1,0 +1,17 @@
+<section style="padding: 10%;">
+  <%= form_with model: @question, class: "new_questions_wrapper" do |f| %>
+    <div>
+      <div class="form-group">
+        <%= f.label :image, "画像の添付" %>
+        <%= f.file_field :image, class: "form-control-file", id: "exampleFormControlFile1" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :message, "質問の内容" %>
+      <%= f.text_area :message, class: "form-control", id: "exampleFormControlTextarea1", rows: "6" %>
+    </div>
+    <div style="text-align: center;">
+      <%= f.submit "送信", class: "btn btn-primary", data: { disable_with: "送信中..." } %>
+    </div>
+  <% end %>
+</section>

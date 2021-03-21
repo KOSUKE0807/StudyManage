@@ -1,0 +1,113 @@
+<div class="container-lg">
+  <div style="text-align: center; padding: 35px;">
+    <%= link_to "先生に質問する", new_question_path, data: {"turbolinks" => false}, class: "btn btn-secondary" %>
+  </div>
+
+  <% @questions.each do |q| %>
+    <div class="stu_card">
+      <div class="stu_card_info" style="margin-bottom: 20px;">
+        <div class="stu_card_info_img">
+          <% if q.student.image.present? %>
+            <%= image_tag variable.student.image.url, class: "stu_card_info_img_self" %>
+          <% else %>
+            <p class="stu_card_info_img_self" style="font-size: 14px;">画像<br>なし</p>
+          <% end %>
+        </div>
+        <div class="stu_card_info_name">
+          <h5>
+            <%= q.student.user_name %>君
+            <% if @current_student.present? %>
+              <%= link_to "削除", "#", style: "color: tomato;margin-left: 20px;font-size:13px;", method: :delete, data: { confirm: '削除しますか？' } %>
+            <% end %>
+          </h5>
+        </div>
+        <div class="stu_card_info_time_ago">
+          <p style="margin-bottom: 5px;"><%= q.created_at.to_s(:datetime_jp) %></p>
+        </div>
+      </div>
+      <div class="balloon" style="margin-top: 0px;">
+        <div class="stu_card_content">
+          <div class="stu_card_content_subject">
+              <p class="stu_card_content_question_circle" style="margin-bottom: 5px">質</p>
+          </div>
+          <div class="stu_card_content_text" style="padding: 0px;padding-left: 5px;">
+            <% if q.image.present? %>
+              <div style="font-size: 12px;"><%= link_to "画像を表示", variable.image.url %></div>
+            <% else %>
+              <div style="font-size: 12px;">画像なし</div>
+            <% end %>
+          </div>
+        </div>
+        <div class="stu_card_comment" style="margin-top: 5px;">
+          <p style="font-size: 12px;margin-bottom: 5px;"><%=q.message %></p>
+        </div>
+      </div>
+      <% if q.replies.length == 0 %>
+          <%= link_to "返信する", "/replies/#{q.id}/new", method: :get, style: "color: tomato;color:blue;" %>
+      <% end %>
+      <% q.replies.each_with_index do |r, i| %>
+        <div class="teacher_card" style="border-left:solid 1px; padding-right: 0px;padding-top: 10px;padding-bottom: 0px;margin:0px">
+          <div class="teacher_card_info">
+            <div class="teacher_card_info_img">
+              <% if r.student_or_teacher == "s" %>
+                <% if r.student.image.present? %>
+                  <%= image_tag r.student.image.url, class: "stu_card_info_img_self" %>
+                <% else %>
+                  <p class="stu_card_info_img_self" style="font-size: 14px;">画像<br>なし</p>
+                <% end %>
+              <% else %>
+                <% if r.teacher.image.present? %>
+                  <%= image_tag r.teacher.image.url, class: "stu_card_info_img_self" %>
+                <% else %>
+                  <p class="stu_card_info_img_self" style="font-size: 14px;">画像<br>なし</p>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="teacher_card_info_name">
+              <% if r.student_or_teacher == "s" %>
+                <h5>
+                  <%=r.student.user_name %>
+                <% if @current_user.present? %>
+                  <%= link_to "削除", "#", style: "color: tomato;margin-left: 20px;font-size:13px;", method: :delete, data: { confirm: '削除しますか？' } %>
+                <% end %>
+                </h5>   
+              <% else %>
+                <h5>
+                  <%=r.teacher.user_name %>
+                  <% if @current_teacher.present? %>
+                    <%= link_to "削除", "/destroy_r/#{r.id}", style: "color: tomato;margin-left: 20px;font-size:13px;", method: :delete, data: { confirm: '削除しますか？' }  %>
+                  <% end %>
+                </h5>
+              <% end %>
+            </div>
+            <div class="teacher_card_info_time_ago">
+              <p><%= r.created_at.to_s(:datetime_jp)%></p>
+            </div>
+          </div>
+          <% if r.student_or_teacher == "s" %>
+            <div class="balloon_student" style="margin-bottom: 0px;">
+              <div class="teacher_card_comment">
+                <div style="font-size: 12px;">画像なし</div>
+                <p style="font-size: 11px;">To: <%=r.teacher.user_name %></p>
+                <p><%=r.message %></p>
+              </div>
+            </div>
+          <% else %>
+            <div class="balloon_teacher" style="margin-bottom: 0px;">
+              <div class="teacher_card_comment">
+                <div style="font-size: 12px;">画像なし</div>
+                <p style="font-size: 11px;">To: <%=r.student.user_name %></p>
+                <p><%=r.message %></p>
+              </div>
+            </div>
+          <% end %>
+          <% if q.replies.length == i + 1 %>
+            <div style = "margin-top: 10px;">
+              <%= link_to "返信する", "/replies/#{q.id}/new", method: :get, style: "color: blue;" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
