@@ -43,7 +43,7 @@
         </div>
       </div>
       <% if q.replies.length == 0 %>
-          <%= link_to "返信する", "/replies/#{q.id}/new", method: :get, style: "color: tomato;color:blue;" %>
+          <%= link_to "返信する", "/replies/#{q.hashid}/new", method: :get, style: "color: tomato;color:blue;" %>
       <% end %>
       <% q.replies.each_with_index do |r, i| %>
         <div class="teacher_card" style="border-left:solid 1px; padding-right: 0px;padding-top: 10px;padding-bottom: 0px;margin:0px">
@@ -103,7 +103,7 @@
           <% end %>
           <% if q.replies.length == i + 1 %>
             <div style = "margin-top: 10px;">
-              <%= link_to "返信する", "/replies/#{q.id}/new", method: :get, style: "color: blue;" %>
+              <%= link_to "返信する", "/replies/#{q.hashid}/new", method: :get, style: "color: blue;" %>
             </div>
           <% end %>
         </div>

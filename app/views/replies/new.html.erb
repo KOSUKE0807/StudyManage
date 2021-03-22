@@ -1,2 +1,35 @@
-<h1>HIIIIIIIII</h1>
-<%= @id %>
+<section style="padding: 5% 10%;">
+  <%= @current_student.teacher.id %><br>
+  <%= @current_student.id %><br>
+  <%= @question.id %>
+  <div style="margin-bottom: 40px;">
+    <div>   
+      <%= @question.message %>
+    </div>
+    <div style="margin-top: 10px;">
+      <% if @question.image.present? %>
+        <%= link_to "画像を表示", @question.image.url, target: :blank %><br>
+        <%= image_tag @question.image.url, size: "100x100" %>
+      <% end %>
+    </div>
+  </div>
+  <%= form_with model: @reply, class: "new_questions_wrapper" do |f| %>
+    <div class="form-group">
+      <%= f.label :message, "返信の内容" %>
+      <%= f.text_area :message, class: "form-control", id: "exampleFormControlTextarea1", rows: "6" %>
+    </div>
+    <div style="text-align: center;">
+      <%= f.hidden_field :question_id, value: @question.id %>
+      <% if @current_student %>
+        <%= f.hidden_field :teacher_id, value: @current_student.teacher.id %>
+        <%= f.hidden_field :student_id, value: @current_student.id %>
+        <%= f.hidden_field :student_or_teacher, value: "s" %>
+      <% elsif @current_teacher %>
+        <%= f.hidden_field :teacher_id, value: @current_teacher.id %>
+        <%= f.hidden_field :student_id, value: @current_teacher.student.id %>
+        <%= f.hidden_field :student_or_teacher, value: "t" %>
+      <% end %>
+      <%= f.submit "送信", class: "btn btn-primary", data: { disable_with: "送信中..." } %>
+    </div>
+  <% end %>
+</section>
