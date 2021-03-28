@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_165728) do
+ActiveRecord::Schema.define(version: 2021_03_28_012755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "messages", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "teacher_id", null: false
+    t.bigint "student_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_messages_on_student_id"
+    t.index ["teacher_id"], name: "index_messages_on_teacher_id"
+  end
+
+  create_table "monthly_goals", force: :cascade do |t|
+    t.text "goal"
+    t.bigint "student_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_monthly_goals_on_student_id"
+  end
 
   create_table "questions", force: :cascade do |t|
     t.text "message"
@@ -37,6 +55,14 @@ ActiveRecord::Schema.define(version: 2021_03_13_165728) do
     t.index ["question_id"], name: "index_replies_on_question_id"
     t.index ["student_id"], name: "index_replies_on_student_id"
     t.index ["teacher_id"], name: "index_replies_on_teacher_id"
+  end
+
+  create_table "school_choises", force: :cascade do |t|
+    t.text "school_choise"
+    t.bigint "student_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_school_choises_on_student_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -72,11 +98,15 @@ ActiveRecord::Schema.define(version: 2021_03_13_165728) do
     t.index ["email"], name: "index_teachers_on_email", unique: true
   end
 
+  add_foreign_key "messages", "students"
+  add_foreign_key "messages", "teachers"
+  add_foreign_key "monthly_goals", "students"
   add_foreign_key "questions", "students"
   add_foreign_key "questions", "teachers"
   add_foreign_key "replies", "questions"
   add_foreign_key "replies", "students"
   add_foreign_key "replies", "teachers"
+  add_foreign_key "school_choises", "students"
   add_foreign_key "students", "teachers"
   add_foreign_key "study_records", "students"
 end

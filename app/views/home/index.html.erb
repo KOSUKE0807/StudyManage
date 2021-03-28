@@ -1,5 +1,5 @@
 <%= javascript_pack_tag 'test' %>
-
+<%= javascript_pack_tag 'barGraph' %>
 
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <strong>Hi! <%=@current_user.user_name %></strong>  You login as Student.
@@ -10,47 +10,49 @@
 
 
 <div  class="container-lg">
-  <div>Hello</div>
-</div>
-
-
-
-<%= link_to "ログアウト", logout_path, method: :delete %>
-
-
-<p>
-  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Link with href
-  </a>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Button with data-target
-  </button>
-</p>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+  <div class="first-sectino-wrapper">
+    <sectino class="choise-school-section">
+      <div>志望校</div>
+      <ul>
+        <li>一橋大学</li>
+      </ul>
+    </sectino>
+    <section class="goal-section">
+      <div>今月の目標</div>
+      <ul>
+        <li>現代文の読解力向上</li>
+      </ul>
+    </section>
+  </div>
+  <div class="second-section-wrapper">
+    <div class= "teacher-icon">
+      <i class="navbar-brand fas fa-user-circle" style="font-size: 40px;"></i>
+    </div>
+    <div class="coment-balloon">
+      今週は計画通りよく取り組めていますね。 来週も今週と同様、集中して取り組みましょう。
+    </div>
+  </div>
+  <div class="third-section-wrapper">
+    <table>
+      <tr>
+        <th>今日</th>
+        <th>今週</th>
+        <th>今月</th>
+        <th>合計</th>
+      </tr>
+      <tr>
+        <td>60分</td>
+        <td>200分</td>
+        <td>1200分</td>
+        <td>1460分</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fourth-sectino-wrapper">
+    <div class="wrap-chart">
+      <div class="chart-container" style="position: relative; width: 100%; height:  100%;">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
   </div>
 </div>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>

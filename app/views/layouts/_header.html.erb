@@ -35,7 +35,9 @@
     </div>
     <div class="btn-group" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-outline-primary btn-sm">プロフィール編集</button>
-      <button type="button" class="btn btn-outline-danger btn-sm">ログアウト</button>
+      <button type="button" class="btn btn-outline-primary btn-sm" style="color: red;">
+        <%= link_to "ログアウト", logout_path, method: :delete %>
+      </button>
     </div>
   </div>  
 </div> 
