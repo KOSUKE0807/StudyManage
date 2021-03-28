@@ -14,22 +14,25 @@
     <sectino class="choise-school-section">
       <div>志望校</div>
       <ul>
-        <li>一橋大学</li>
+        <li><%= @sh.school_choise %></li>
       </ul>
     </sectino>
     <section class="goal-section">
       <div>今月の目標</div>
       <ul>
-        <li>現代文の読解力向上</li>
+        <li><%= @mg.goal %></li>
       </ul>
     </section>
   </div>
   <div class="second-section-wrapper">
     <div class= "teacher-icon">
       <i class="navbar-brand fas fa-user-circle" style="font-size: 40px;"></i>
+      <span class="message-teacher-name" style="font-size: 12px">
+        <span><%= @m.teacher.user_name %>先生</span>
+      </span>
     </div>
     <div class="coment-balloon">
-      今週は計画通りよく取り組めていますね。 来週も今週と同様、集中して取り組みましょう。
+      <%= @m.comment %>
     </div>
   </div>
   <div class="third-section-wrapper">
