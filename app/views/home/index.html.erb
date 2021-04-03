@@ -1,5 +1,8 @@
 <%= javascript_pack_tag 'test' %>
 <%= javascript_pack_tag 'barGraph' %>
+<%= javascript_pack_tag 'home/ajax' %>
+<%= javascript_pack_tag 'home/input' %>
+
 
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <strong>Hi! <%=@current_user.user_name %></strong>  You login as Student.
@@ -14,13 +17,21 @@
     <sectino class="choise-school-section">
       <div>志望校</div>
       <ul>
-        <li><%= @sh.school_choise %></li>
+        <li id="choise-school-ajax-request">
+          <%= form_tag('/school_choise_update', method: :post, remote: true) { %>
+            <%= text_field :data, :text, value: @sh.school_choise, disabled: true, id: "school-input" %>
+            <button type="button" id="choise-school-edit" class="btn btn-primary btn-sm">編集</button>
+            <%= submit_tag '更新', id: "choise-school-submit" %>  
+          <% } %>
+        </li>
       </ul>
     </sectino>
     <section class="goal-section">
       <div>今月の目標</div>
       <ul>
-        <li><%= @mg.goal %></li>
+        <li id="goal-ajax-request">
+          <%= @mg.goal %>
+        </li>
       </ul>
     </section>
   </div>
@@ -59,3 +70,7 @@
     </div>
   </div>
 </div>
+
+<script>
+  register_callback();
+</script>
