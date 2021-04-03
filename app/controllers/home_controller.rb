@@ -11,15 +11,17 @@ class HomeController < ApplicationController
   end
 
   def school_update
-    school_name = params[:data][:text]
+    school_name = params[:school]
     s = SchoolChoise.find_or_initialize_by(student_id: @current_student.id)
     s.school_choise = school_name
     s.save 
-
-    render partial: 'ajax_school_choise', locals: { school_name: s.school_choise }
   end
 
   def goal_update
+    goal = params[:goal]
+    m = MonthlyGoal.find_or_initialize_by(student_id: @current_student.id)
+    m.goal = goal
+    m.save 
   end
 
   def get_school_params

@@ -18,11 +18,11 @@
       <div>志望校</div>
       <ul>
         <li id="choise-school-ajax-request">
-          <%= form_tag('/school_choise_update', method: :post, remote: true) { %>
-            <%= text_field :data, :text, value: @sh.school_choise, disabled: true, id: "school-input" %>
+          <%= form_with url:"/school_choise_update" do |f| %>
+            <%= f.text_field :school, value: @sh.school_choise, disabled: true, id: "school-input" %>
             <button type="button" id="choise-school-edit" class="btn btn-primary btn-sm">編集</button>
-            <%= submit_tag '更新', id: "choise-school-submit" %>  
-          <% } %>
+            <%= f.submit '更新', id: "choise-school-submit" %>  
+          <% end %>
         </li>
       </ul>
     </sectino>
@@ -30,7 +30,11 @@
       <div>今月の目標</div>
       <ul>
         <li id="goal-ajax-request">
-          <%= @mg.goal %>
+          <%= form_with url:"/goal_update" do |f| %>
+            <%= f.text_field :goal, value: @mg.goal, disabled: true, id: "goal-input" %>
+            <button type="button" id="goal-edit" class="btn btn-primary btn-sm">編集</button>
+            <%= f.submit '更新', id: "goal-submit" %>  
+          <% end %>
         </li>
       </ul>
     </section>

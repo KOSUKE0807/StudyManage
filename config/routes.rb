@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   post '/school_choise_update', to: 'home#school_update'
+  post '/goal_update', to: 'home#goal_update'
 
   get 'replies/:question_id/new', to: 'replies#new'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
