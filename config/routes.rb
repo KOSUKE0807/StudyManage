@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :study_records
   resources :questions
   resources :replies
+  resources :students
 end

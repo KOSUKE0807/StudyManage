@@ -21,20 +21,23 @@
       </ul>
     </div>
     <a style="text-align: center;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-      <i class="navbar-brand fas fa-user-circle" style="font-size: 32px;"></i>
+      <% if @current_user.image.present? %>
+        <%=image_tag @current_user.image.url, class: "user-profile-img-self" %>
+      <% else %>    
+        <i class="navbar-brand fas fa-user-circle" style="font-size: 32px;"></i>
+      <% end %>
       <p style="margin-bottom: 0px;font-size: 10px;color: white;"><%=@current_user.user_name %></p>
     </a>
   </div>
 </nav>
 <div class="collapse" id="collapseExample">
-  <div class="container-sm" style="text-align: center;">
+  <div class="container-sm" style="text-align: right;">
     <div>
-      <i class="navbar-brand fas fa-user-circle" style="font-size: 40px;"></i>
-      <p style="margin-bottom: 0px;font-size: 15px;"><%=@current_user.user_name %></p>
-      <p style="margin-bottom: 0px;font-size: 12px;">担当の先生：<%=@current_user.teacher.user_name %></p>
+      <p style="margin-bottom: 0px;font-size: 17px;"><%=@current_user.user_name %></p>
+      <p style="margin-bottom: 0px;font-size: 15px;">担当の先生：<%=@current_user.teacher.user_name %></p>
     </div>
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-outline-primary btn-sm">プロフィール編集</button>
+      <%= link_to "プロフィール編集", edit_student_path(@current_student.id), class: "btn btn-outline-primary btn-sm" %>
       <button type="button" class="btn btn-outline-primary btn-sm" style="color: red;">
         <%= link_to "ログアウト", logout_path, method: :delete %>
       </button>

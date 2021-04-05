@@ -59,14 +59,15 @@
         <th>合計</th>
       </tr>
       <tr>
-        <td>60分</td>
-        <td>200分</td>
-        <td>1200分</td>
-        <td>1460分</td>
+        <td><%= @current_student.today_study_time %>分</td>
+        <td><%= @current_student.weekly_study_time %>分</td>
+        <td><%= @current_student.monthly_study_time %>分</td>
+        <td><%= @current_student.all_study_time %>分</td>
       </tr>
     </table>
   </div>
   <div class="fourth-sectino-wrapper">
+    <div id="study-data" data-json="<%= @current_student.ten_days_study_time.to_json %>"></div>
     <div class="wrap-chart">
       <div class="chart-container" style="position: relative; width: 100%; height:  100%;">
         <canvas id="myChart"></canvas>

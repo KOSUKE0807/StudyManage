@@ -30,6 +30,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'kaminari'
 
+gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+gem 'rmagick'
+
 gem 'bootstrap4-kaminari-views'
 
 gem "hashid-rails", "~> 1.0"
