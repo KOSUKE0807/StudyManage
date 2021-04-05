@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   get 'replies/:question_id/new', to: 'replies#new'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :sessions
-  resources :home
+  resources :sessions, only: [:create, :destroy]
+  resources :home, only: [:index]
+  resources :teacher_home, only: [:index]
   resources :study_records
   resources :questions
   resources :replies
-  resources :students
+  resources :students, only: [:create, :new, :edit]
+  resources :teachers, only: [:create, :new, :edit]
 end

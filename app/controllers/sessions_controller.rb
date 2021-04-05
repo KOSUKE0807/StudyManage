@@ -14,9 +14,10 @@ class SessionsController < ApplicationController
 
     if teacher && teacher.authenticate(params[:session][:password]) && session[:student_id].nil?
       session[:teacher_id] = teacher.id
+      redirect_to teacher_home_index_path
     elsif student && student.authenticate(params[:session][:password]) && session[:teacher_id].nil?
       session[:student_id] = student.id
-      redirect_to '/home'
+      redirect_to home_index_path
     elsif student.nil? && teacher.nil?
       redirect_to '/login'
     end

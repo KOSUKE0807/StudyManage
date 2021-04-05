@@ -8,8 +8,6 @@ class HomeController < ApplicationController
     @sh = SchoolChoise.find_by(student_id: @current_student.id)
     @mg = MonthlyGoal.find_by(student_id: @current_student.id)
     @m = Message.find_by(student_id: @current_student.id)
-
-    @array = [1,2,3,4,5]
   end
 
   def school_update

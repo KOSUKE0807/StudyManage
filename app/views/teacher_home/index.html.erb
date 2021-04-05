@@ -1,0 +1,54 @@
+<div  class="container-lg">
+  <% @students.each do |s| %>
+    <div class="student-info-container">
+      <div class="student-name-section">
+        <i class="navbar-brand fas fa-user-circle" style="font-size: 40px;"></i>
+        <div><%= s.user_name %> 君</div>
+      </div>
+      <div  class="student-school-goal-section">
+        <div>志望校</div>
+        <ul>
+          <% if s.school_choise.present? %>
+            <li><%= s.school_choise.school_choise %></li>
+          <% else %>
+            <li>未設定</li>
+          <% end %>
+        </ul>
+        <div>今月の目標</div>
+        <ul>
+          <% if s.monthly_goals.present? %>
+            <li><%= s.monthly_goal.goal %></li>          
+          <% else %>
+            <li>未設定</li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="student-learning-table-section">
+        <table>
+          <tr>
+            <th>今日</th>
+            <th>今週</th>
+            <th>今月</th>
+            <th>合計</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <div class="comment-to-student-section">
+        <div>
+          生徒へのコメント
+        </div>
+        <div>
+          今週は計画通りよく取り組めていますね。 来週も今週と同様、集中して取り組みましょう。
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+  <% end %>
+</div>

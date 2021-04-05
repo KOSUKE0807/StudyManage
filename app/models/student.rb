@@ -4,10 +4,12 @@ class Student < ApplicationRecord
   mount_uploader :image, ImgUploader
 
   belongs_to :teacher
+  has_one :monthly_goal
+  has_one :school_choise
+
   has_secure_password
   has_many :study_records, dependent: :destroy
   has_many :monthly_goals, dependent: :destroy
-  has_one :school_choise, dependent: :destroy
   has_many :messages, dependent: :destroy
 
   def today_study_time

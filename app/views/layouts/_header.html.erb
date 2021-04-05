@@ -9,15 +9,18 @@
         <li class="nav-item active">
           <a class="nav-link" href="/home" data-bs-toggle="tooltip" data-placement="bottom" title="ホーム画面へ"><i class="fas fa-home"></i> ホーム</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/study_records" data-bs-toggle="tooltip" data-placement="bottom" title="学習を記録する">学習記録</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#" data-bs-toggle="tooltip" data-placement="bottom" title="単語テストを受ける">単語学習</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/questions" data-bs-toggle="tooltip" data-placement="bottom" title="先生に質問する">質問</a>
-        </li>
+        <% if @current_student %>
+          <li class="nav-item active">
+            <a class="nav-link" href="/study_records" data-bs-toggle="tooltip" data-placement="bottom" title="学習を記録する">学習記録</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#" data-bs-toggle="tooltip" data-placement="bottom" title="単語テストを受ける">単語学習</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/questions" data-bs-toggle="tooltip" data-placement="bottom" title="先生に質問する">質問</a>
+          </li>
+        <% else %>
+        <% end %>
       </ul>
     </div>
     <a style="text-align: center;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -34,10 +37,16 @@
   <div class="container-sm" style="text-align: right;">
     <div>
       <p style="margin-bottom: 0px;font-size: 17px;"><%=@current_user.user_name %></p>
-      <p style="margin-bottom: 0px;font-size: 15px;">担当の先生：<%=@current_user.teacher.user_name %></p>
+      <% if @current_student %>
+        <p style="margin-bottom: 0px;font-size: 15px;">担当の先生：<%=@current_user.teacher.user_name %></p>
+      <% end %>
     </div>
     <div class="btn-group" role="group" aria-label="Basic example">
-      <%= link_to "プロフィール編集", edit_student_path(@current_student.id), class: "btn btn-outline-primary btn-sm" %>
+      <% if @current_student %>
+        <%= link_to "プロフィール編集", edit_student_path(@current_student.id), class: "btn btn-outline-primary btn-sm" %>
+      <% else %>
+        <%= link_to "プロフィール編集", edit_student_path(@current_teacher.id), class: "btn btn-outline-primary btn-sm" %>
+      <% end %>
       <button type="button" class="btn btn-outline-primary btn-sm" style="color: red;">
         <%= link_to "ログアウト", logout_path, method: :delete %>
       </button>

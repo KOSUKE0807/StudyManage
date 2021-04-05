@@ -1,3 +1,3 @@
 class SchoolChoise < ApplicationRecord
-  belongs_to :student
+  has_one :student
 end
